@@ -252,25 +252,25 @@ export default {
       searchMembers: [],
       searchParentMileStone: [],
       members: [
-        {
-          text: "조병걸",
-          value: "1945180349600930603"
+         {
+          text: "정기효",
+          value: "1387695629192606464"
         },
         {
-          text: "조희성",
-          value: "2382803400204141835"
+          text: "엄세진",
+          value: "1390209123151787147"
         },
         {
-          text: "서석호",
-          value: "2538639605132938751"
+          text: "이대화",
+          value: "1595374919747279927"
         },
         {
-          text: "최강훈",
-          value: "1387695623848592384"
+          text: "심동호",
+          value: "1853861261679058197"
         },
         {
-          text: "박시우",
-          value: "1737172798547430820"
+          text: "김종완",
+          value: "2382803266005319748"
         },
       ]
     };
@@ -286,10 +286,6 @@ export default {
     }),
     filteredParentMileStone() {
       return this.mileStoneArray
-        .filter(
-          mileStone =>
-            mileStone.text.length == 7 && mileStone.text.charAt(4) == "."
-        )
         .map(mileStone => {
           return {
             text: mileStone.text,
@@ -490,16 +486,17 @@ export default {
 
         if (tag.name.includes("모듈")) {
           if (post.module == null) {
-            post.module = tag.name.substring(4);
+            post.module = tag.name.substring(5);
           }
-        } else if (tag.name.includes("작업MD")) {
-          post.md = Number(tag.name.substring(6));
+        } else if (tag.name.includes("MD")) {
+
+          post.md = Number(tag.name.substring(4));
           if (isNaN(post.md)) {
             post.md = 0;
           }
           post.mdTagId = tag.id;
         } else if (tag.name.includes("작업:")) {
-          post.workType = tag.name.substring(4);
+          post.workType = tag.name.substring(5);
         } else if (tag.name.includes("수행월:")) {
           post.month = tag.id;
         }
@@ -532,7 +529,7 @@ export default {
       if (tag.name.includes("MD:")) {
         this.tagMD.push(
           Object.assign(tag, {
-            text: tag.name.substring(6),
+            text: tag.name.substring(4),
             value: tag.id
           })
         );
@@ -547,7 +544,7 @@ export default {
         .mergeMap(mileStones => mileStones)
         .map(mileStone => {
           this.mileStoneMap[mileStone.id] = Object.assign(mileStone, {
-            text: mileStone.name,
+            text: mileStone.name.split(' ')[0],
             value: mileStone.id
           });
           return this.mileStoneMap[mileStone.id];

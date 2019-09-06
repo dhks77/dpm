@@ -3,7 +3,7 @@ import ObservableUtils from "../utils/obserable-utils";
 import { Observable } from "rxjs";
 
 const DoorayKey = {
-  projectId: "1963480696738741170"
+  projectId: "2559193520715588701"
 };
 
 export const DoorayService = {
